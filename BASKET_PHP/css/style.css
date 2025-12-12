@@ -1,0 +1,432 @@
+/* ===== RESET ET BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* ===== TYPOGRAPHIE ===== */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+/* ===== LAYOUT ===== */
+.conteneur {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.ligne {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+/*Mobile*/
+.largeur-totale { width: 100%; padding: 0 15px; }
+/*Tablette*/
+.tablette-demi { width: 50%; padding: 0 15px; }
+.tablette-deux-tiers{ width: 66.666%; padding: 0 15px; }
+.tablette-un-tiers{ width: 33.333%; padding: 0 15px; }
+/*Ordinateur*/
+.desktop{ width: 50%; padding: 0 15px; }
+
+/* ===== NAVIGATION ===== */
+.barre-navigation {
+    background-color: #2c3e50;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.marque-navigation {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.marque-navigation:hover {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.liens-navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.lien-navigation {
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.lien-navigation:hover,
+.lien-navigation.actif {
+    color: white;
+    background-color: #34495e;
+    text-decoration: none;
+}
+
+/* ===== CARTES ===== */
+.carte {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    border: 1px solid #e9ecef;
+}
+
+.entete-carte {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+}
+
+.entete-carte.entete-primaire {
+    background-color: #3498db;
+    color: white;
+}
+
+.entete-carte.entete-succes {
+    background-color: #27ae60;
+    color: white;
+}
+
+.entete-carte.entete-avertissement {
+    background-color: #f39c12;
+    color: white;
+}
+
+.entete-carte.entete-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.entete-carte.entete-secondaire {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.corps-carte {
+    padding: 1.5rem;
+}
+
+/* ===== BOUTONS ===== */
+.bouton {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bouton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.bouton-composer {
+    background-color: #3498db;
+    color: white;
+}
+
+.bouton-composer:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.bouton-succes {
+    background-color: #27ae60;
+    color: white;
+}
+
+.bouton-succes:hover {
+    background-color: #219a52;
+    color: white;
+}
+
+.bouton-modifier {
+    background-color: #f39c12;
+    color: white;
+}
+
+.bouton-modifier:hover {
+    background-color: #d68910;
+    color: white;
+}
+
+.bouton-supprimer {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.bouton-supprimer:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+.bouton-retour {
+    background-color: #a295a6;
+    color: white;
+}
+
+.bouton-retour:hover {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+.bouton-petit {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.bouton-grand {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* ===== FORMULAIRES ===== */
+.champ-formulaire {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.champ-formulaire:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.selection-formulaire {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.etiquette-formulaire {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* ===== TABLEAUX ===== */
+.tableau {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableau th,
+.tableau td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.tableau th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.tableau-bande tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.tableau-survol tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.entete-tableau-sombre th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* ===== ALERTES ===== */
+.alerte {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border-left: 4px solid transparent;
+}
+
+.alerte-succes {
+    background-color: #d5f4e6;
+    border-color: #27ae60;
+    color: #155724;
+}
+
+.alerte-danger {
+    background-color: #f8d7da;
+    border-color: #e74c3c;
+    color: #721c24;
+}
+
+.alerte-avertissement {
+    background-color: #fff3cd;
+    border-color: #f39c12;
+    color: #856404;
+}
+
+.alerte-info {
+    background-color: #d1ecf1;
+    border-color: #3498db;
+    color: #0c5460;
+}
+
+/* ===== BADGES ===== */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 4px;
+}
+
+.fond-primaire { background-color: #3498db; color: white; }
+.fond-succes { background-color: #27ae60; color: white; }
+.fond-danger { background-color: #e74c3c; color: white; }
+.fond-avertissement { background-color: #f39c12; color: white; }
+.fond-info { background-color: #17a2b8; color: white; }
+.fond-secondaire { background-color: #6c757d; color: white; }
+
+/* ===== UTILITAIRES ===== */
+.centrer-texte { text-align: center; }
+.centrer { justify-content: center; }
+.droite-auto { margin-left: auto; }
+.marge-bas { margin-bottom: 1rem; }
+.marge-bas-grande { margin-bottom: 3rem; }
+.marge-haut { margin-top: 1rem; }
+.marge-haut-grande { margin-top: 3rem; }
+.marge-droite { margin-right: 1rem; }
+.espacement { padding: 2rem; }
+.espacement-vertical { padding: 2rem 0; }
+.largeur-totale { width: 100%; }
+.hauteur-totale { height: 100%; }
+.page { padding: 2rem 0; }
+.entete-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.tableau-responsive {
+    overflow-x: auto;
+}
+
+.tableau-compact th,
+.tableau-compact td {
+    padding: 0.5rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .conteneur {
+        padding: 0 10px;
+    }
+    
+    .tablette-demi,
+    .tablette-deux-tiers,
+    .tablette-un-tiers,
+    .desktop {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .liens-navigation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .entete-page {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+/* ===== FOOTER ===== */
+.pied-page {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.texte-mute {
+    color: #6c757d;
+}
+
+.texte-blanc {
+    color: white;
+}
+
+.zone-lecture-seule {
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+}
+
+.selection-formulaire[disabled],
+.champ-formulaire[disabled] {
+    background-color: #e9ecef !important;
+    opacity: 0.7 !important;
+    cursor: not-allowed !important;
+    border-color: #ced4da !important;
+}
+
+.titre-section small {
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+.entete-carte .texte-blanc {
+    color: white;
+    opacity: 0.9;
+}

@@ -1,0 +1,44 @@
+CREATE TABLE Joueur(
+   id_joueur INT,
+   numero_licence VARCHAR(50) ,
+   nom VARCHAR(100) ,
+   prenom VARCHAR(100) ,
+   date_naissance DATE,
+   taille DECIMAL(5,2)  ,
+   poids DECIMAL(5,2)  ,
+   statut VARCHAR(15) ,
+   PRIMARY KEY(id_joueur),
+   UNIQUE(numero_licence)
+);
+
+CREATE TABLE Match_basket(
+   id_match INT,
+   date_heure DATETIME,
+   equipe_adverse VARCHAR(200) ,
+   lieu VARCHAR(200) ,
+   resultat VARCHAR(20) ,
+   score_propre SMALLINT,
+   score_adverse SMALLINT,
+   commentaire_match TEXT,
+   PRIMARY KEY(id_match)
+);
+
+CREATE TABLE Commentaire_Joueur(
+   id_commentaire INT,
+   Texte TEXT,
+   date_commentaire DATETIME,
+   id_joueur INT NOT NULL,
+   PRIMARY KEY(id_commentaire),
+   FOREIGN KEY(id_joueur) REFERENCES Joueur(id_joueur)
+);
+
+CREATE TABLE Participer(
+   id_joueur INT,
+   id_match INT,
+   titulaire BOOLEAN,
+   evaluation SMALLINT,
+   libelle_poste VARCHAR(100) ,
+   PRIMARY KEY(id_joueur, id_match),
+   FOREIGN KEY(id_joueur) REFERENCES Joueur(id_joueur),
+   FOREIGN KEY(id_match) REFERENCES Match_basket(id_match)
+);

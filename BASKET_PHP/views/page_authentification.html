@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Authentification</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Bienvenue</h1>
+        </div>
+        
+        <div class="auth-section">
+            <div class="logo">
+                <h2>Connexion</h2>
+            </div>
+            
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <input type="email" id="email" placeholder="votre@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" placeholder="Votre mot de passe" required>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        Se souvenir de moi
+                    </label>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+                
+                <button type="submit" class="login-btn">Se connecter</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
