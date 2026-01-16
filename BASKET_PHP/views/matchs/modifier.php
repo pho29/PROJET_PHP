@@ -19,6 +19,15 @@ if (!$match) {
     exit();
 }
 
+// Vérifier si le match n'a pas encore eu lieu
+$dateMatch = strtotime($match['date_heure']);
+$dateActuelle = time();
+
+if ($dateMatch <= $dateActuelle) {
+    header('Location: liste.php?error=Impossible de modifier un match qui a déjà eu lieu');
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dateMatch = $_POST['date_match'] ?? '';
     $heureMatch = $_POST['heure_match'] ?? '';
@@ -55,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="liens-navigation">
                     <a class="lien-navigation" href="../index.php">Accueil</a>
                     <a class="lien-navigation" href="../joueurs/liste.php">Joueurs</a>
+                    <a class="lien-navigation" href="../statistiques/stats.php">Statistiques</a>
                     <a class="lien-navigation" href="liste.php">Matchs</a>
                 </div>
             </div>
@@ -98,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="marge-bas">
                                 <label for="equipe_adverse" class="etiquette-formulaire">Équipe adverse *</label>
                                 <input type="text" class="champ-formulaire" id="equipe_adverse" name="equipe_adverse" 
-                                       value="<?= $match['equipe_adverse'] ?>" required>
+                                       value="<?= htmlspecialchars($match['equipe_adverse']) ?>" required>
                             </div>
 
                             <div class="marge-bas">
@@ -135,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="marge-bas">
                                 <label for="commentaire_match" class="etiquette-formulaire">Commentaire</label>
                                 <textarea class="champ-formulaire" id="commentaire_match" name="commentaire_match" 
-                                          rows="3"><?= $match['commentaire_match'] ?? '' ?></textarea>
+                                          rows="3"><?= htmlspecialchars($match['commentaire_match'] ?? '') ?></textarea>
                             </div>
 
                             <div class="actions-boutons">

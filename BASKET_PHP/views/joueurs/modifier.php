@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="liens-navigation">
                     <a class="lien-navigation" href="../index.php">Accueil</a>
                     <a class="lien-navigation actif" href="liste.php">Joueurs</a>
+                    <a class="lien-navigation" href="../statistiques/stats.php">Statistiques</a>
                     <a class="lien-navigation" href="../matchs/liste.php">Matchs</a>
                 </div>
             </div>

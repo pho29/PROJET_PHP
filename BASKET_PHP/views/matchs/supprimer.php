@@ -22,14 +22,28 @@ if (!$match) {
     exit();
 }
 
+// Vérifier si le match peut être supprimé
+$dateMatch = strtotime($match['date_heure']);
+$dateActuelle = time();
+
+if ($dateMatch <= $dateActuelle) {
+    header('Location: liste.php?error=Impossible de supprimer un match qui a déjà eu lieu');
+    exit();
+}
+
 $confirmation = isset($_GET['confirm']) && $_GET['confirm'] === 'true';
 
 if ($confirmation) {
-    if ($matchController->supprimerMatch($idMatch)) {
-        header('Location: liste.php?success=match_supprime');
-        exit();
-    } else {
-        header('Location: liste.php?error=erreur_suppression');
+    try {
+        if ($matchController->supprimerMatch($idMatch)) {
+            header('Location: liste.php?success=match_supprime');
+            exit();
+        } else {
+            header('Location: liste.php?error=erreur_suppression');
+            exit();
+        }
+    } catch (Exception $e) {
+        header('Location: liste.php?error=' . urlencode($e->getMessage()));
         exit();
     }
 }
@@ -50,6 +64,7 @@ if ($confirmation) {
                 <div class="liens-navigation">
                     <a class="lien-navigation" href="../index.php">Accueil</a>
                     <a class="lien-navigation" href="../joueurs/liste.php">Joueurs</a>
+                    <a class="lien-navigation" href="../statistiques/stats.php">Statistiques</a>
                     <a class="lien-navigation" href="liste.php">Matchs</a>
                 </div>
             </div>
@@ -71,7 +86,7 @@ if ($confirmation) {
                         <div class="marge-bas">
                             <h5>Match à supprimer :</h5>
                             <p><strong>Date :</strong> <?= date('d/m/Y H:i', strtotime($match['date_heure'])) ?></p>
-                            <p><strong>Équipe adverse :</strong> <?= $match['equipe_adverse'] ?></p>
+                            <p><strong>Équipe adverse :</strong> <?= htmlspecialchars($match['equipe_adverse']) ?></p>
                             <p><strong>Lieu :</strong> <?= $match['lieu'] ?></p>
                             <p><strong>Résultat :</strong> 
                                 <span class="badge <?= 
@@ -84,6 +99,10 @@ if ($confirmation) {
                             </p>
                             <?php if ($match['resultat'] !== 'À venir'): ?>
                                 <p><strong>Score :</strong> <?= $match['score_propre'] ?> - <?= $match['score_adverse'] ?></p>
+                            <?php endif; ?>
+                            
+                            <?php if ($match['commentaire_match']): ?>
+                                <p><strong>Commentaire :</strong> <?= htmlspecialchars($match['commentaire_match']) ?></p>
                             <?php endif; ?>
                         </div>
 
@@ -100,7 +119,7 @@ if ($confirmation) {
                             <a href="liste.php" class="bouton bouton-secondaire">Annuler</a>
                             <a href="supprimer.php?id=<?= $idMatch ?>&confirm=true" 
                                class="bouton bouton-danger" 
-                               onclick="return confirm('Êtes-vous ABSOLUMENT SÛR ?')">
+                               onclick="return confirm('Êtes-vous ABSOLUMENT SÛR ? Cette action est irréversible.')">
                                 Confirmer la suppression
                             </a>
                         </div>

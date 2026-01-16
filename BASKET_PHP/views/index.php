@@ -77,6 +77,29 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
+        
+
+        <div class="ligne marge-bas-grande">
+            <div class="largeur-totale marge-bas">
+                <div class="carte hauteur-totale">
+                    <div class="entete-carte" style="background-color: #9b59b6; color: white;">
+                        <h3 class="texte-blanc">Statistiques</h3>
+                    </div>
+                    <div class="corps-carte centrer-texte">
+                        <p>
+                            Analysez les performances et statistiques de l'équipe. 
+                            Consultez les données individuelles et collectives pour optimiser vos stratégies.
+                        </p>
+                        <div class="marge-haut">
+                            <a href="statistiques/stats.php" class="bouton" 
+                               style="background-color: #9b59b6; color: white; padding: 0.75rem 1.5rem;">
+                                Voir les Statistiques
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="pied-page">

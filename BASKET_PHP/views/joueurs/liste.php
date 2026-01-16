@@ -26,6 +26,7 @@ $listeJoueurs = $joueurController->getAll();
                 <div class="liens-navigation">
                     <a class="lien-navigation" href="../index.php">Accueil</a>
                     <a class="lien-navigation actif" href="liste.php">Joueurs</a>
+                    <a class="lien-navigation" href="../statistiques/stats.php">Statistiques</a>
                     <a class="lien-navigation" href="../matchs/liste.php">Matchs</a>
                 </div>
             </div>
@@ -78,6 +79,7 @@ $listeJoueurs = $joueurController->getAll();
                         <td>
                             <a href="modifier.php?id=<?= $joueur['id_joueur'] ?>" class="bouton bouton-petit bouton-modifier">Modifier</a>
                             <a href="supprimer.php?id=<?= $joueur['id_joueur'] ?>" class="bouton bouton-petit bouton-supprimer" onclick="return confirm('Supprimer ce joueur ?')">Supprimer</a>
+                            <a href="../commentaires/commentaires.php?id=<?= $joueur['id_joueur'] ?>" class="bouton bouton-petit bouton-consulter">Commentaires</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

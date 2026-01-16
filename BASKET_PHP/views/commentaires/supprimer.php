@@ -1,35 +1,35 @@
 <?php
 session_start();
-require_once __DIR__ . '/../../controllers/JoueurController.php';
+require_once __DIR__ . '/../../controllers/CommentaireController.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../../views/login.php');
     exit();
 }
 
-$joueurController = new JoueurController();
-$idJoueur = $_GET['id'] ?? 0;
+$commentaireController = new CommentaireController();
+$idCommentaire = $_GET['id'] ?? 0;
 
-if (!$idJoueur) {
-    header('Location: liste.php?error=id_manquant');
+if (!$idCommentaire) {
+    header('Location: commentaires.php?error=id_manquant');
     exit();
 }
 
-$joueur = $joueurController->getById($idJoueur);
+$commentaire = $commentaireController->getById($idCommentaire);
 
-if (!$joueur) {
-    header('Location: liste.php?error=joueur_introuvable');
+if (!$commentaire) {
+    header('Location: commentaires.php?error=commentaire_introuvable');
     exit();
 }
 
 $confirmation = isset($_GET['confirm']) && $_GET['confirm'] === 'true';
 
 if ($confirmation) {
-    if ($joueurController->delete($idJoueur)) {
-        header('Location: liste.php?success=joueur_supprime');
+    if ($commentaireController->supprimerCommentaire($idCommentaire)) {
+        header('Location: commentaires.php?id=' . $commentaire['id_joueur'] . '&success=commentaire_supprime');
         exit();
     } else {
-        header('Location: liste.php?error=erreur_suppression');
+        header('Location: commentaires.php?id=' . $commentaire['id_joueur'] . '&error=erreur_suppression');
         exit();
     }
 }
@@ -39,7 +39,7 @@ if ($confirmation) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supprimer un Joueur</title>
+    <title>Supprimer un Commentaire</title>
     <link href="../../css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -49,7 +49,7 @@ if ($confirmation) {
                 <a class="marque-navigation" href="../index.php">Gestion Basket</a>
                 <div class="liens-navigation">
                     <a class="lien-navigation" href="../index.php">Accueil</a>
-                    <a class="lien-navigation actif" href="liste.php">Joueurs</a>
+                    <a class="lien-navigation actif" href="../joueurs/liste.php">Joueurs</a>
                     <a class="lien-navigation" href="../statistiques/stats.php">Statistiques</a>
                     <a class="lien-navigation" href="../matchs/liste.php">Matchs</a>
                 </div>
@@ -66,31 +66,28 @@ if ($confirmation) {
                     </div>
                     <div class="corps-carte">
                         <div class="alerte alerte-avertissement">
-                            <strong>Attention !</strong> Vous êtes sur le point de supprimer définitivement ce joueur.
+                            <strong>Attention !</strong> Vous êtes sur le point de supprimer définitivement ce commentaire.
                         </div>
 
                         <div class="marge-bas">
-                            <h5>Joueur à supprimer :</h5>
-                            <p><strong>Nom :</strong> <?= $joueur['nom'] ?></p>
-                            <p><strong>Prénom :</strong> <?= $joueur['prenom'] ?></p>
-                            <p><strong>Licence :</strong> <?= $joueur['numero_licence'] ?></p>
-                            <p><strong>Statut :</strong> <?= $joueur['statut'] ?></p>
+                            <h5>Commentaire à supprimer :</h5>
+                            <p><?= nl2br(htmlspecialchars($commentaire['Texte'])) ?></p>
+                            <p><strong>Date :</strong> <?= $commentaire['date_commentaire'] ?></p>
                         </div>
 
                         <div class="alerte alerte-danger">
                             <strong>Conséquences :</strong>
                             <ul>
-                                <li>Toutes les données du joueur seront perdues</li>
-                                <li>Les participations aux matchs seront supprimées</li>
+                                <li>Le commentaire sera définitivement supprimé</li>
                                 <li>Cette action est irréversible</li>
                             </ul>
                         </div>
 
                         <div class="actions-boutons">
-                            <a href="liste.php" class="bouton bouton-retour">Annuler</a>
-                            <a href="supprimer.php?id=<?= $idJoueur ?>&confirm=true" 
+                            <a href="commentaires.php?id=<?= $commentaire['id_joueur'] ?>" class="bouton bouton-retour">Annuler</a>
+                            <a href="supprimer.php?id=<?= $idCommentaire ?>&confirm=true" 
                                class="bouton bouton-supprimer" 
-                               onclick="return confirm('Êtes-vous ABSOLUMENT SÛR ?')">
+                               onclick="return confirm('Êtes-vous ABSOLUMENT SÛR de supprimer ce commentaire ?')">
                                 Confirmer la suppression
                             </a>
                         </div>

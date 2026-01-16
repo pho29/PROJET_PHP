@@ -145,4 +145,67 @@ class JoueurDAO {
             return [];
         }
     }
+
+    public function getStatsParJoueur() {
+        $sql = "
+        SELECT 
+            j.id_joueur,
+            j.nom,
+            j.prenom,
+            j.statut,
+
+            COUNT(p.id_match) AS matchs_joues,
+            SUM(p.titulaire = 1) AS titularisations,
+            SUM(p.titulaire = 0) AS remplacements,
+            ROUND(AVG(p.evaluation), 2) AS moyenne_evaluation,
+
+            SUM(CASE WHEN m.resultat = 'Victoire' AND p.id_match IS NOT NULL THEN 1 ELSE 0 END) AS victoires_jouees,
+
+            (
+                SELECT libelle_poste
+                FROM Participer p2
+                WHERE p2.id_joueur = j.id_joueur
+                GROUP BY libelle_poste
+                ORDER BY COUNT(*) DESC
+                LIMIT 1
+            ) AS poste_prefere
+
+        FROM Joueur j
+        LEFT JOIN Participer p ON j.id_joueur = p.id_joueur
+        LEFT JOIN Match_basket m ON p.id_match = m.id_match
+        GROUP BY j.id_joueur
+        ORDER BY j.nom, j.prenom
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getSelectionsConsecutives($id_joueur) {
+        $sql = "
+            SELECT m.id_match
+            FROM Match_basket m
+            LEFT JOIN Participer p 
+                ON m.id_match = p.id_match 
+                AND p.id_joueur = :id
+            WHERE m.resultat != 'À venir'
+            ORDER BY m.date_heure DESC
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id_joueur, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $count = 0;
+        foreach ($stmt->fetchAll() as $row) {
+            if ($row['id_match'] === null) {
+                break; // rupture de la série
+            }
+            $count++;
+        }
+        return $count;
+    }
+
+
 }

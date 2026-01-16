@@ -192,6 +192,16 @@ h6 { font-size: 1rem; }
     color: white;
 }
 
+.bouton-consulter {
+    background-color: #3498db;
+    color: white;
+}
+
+.bouton-consulter:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
 .bouton-retour {
     background-color: #a295a6;
     color: white;
@@ -237,6 +247,11 @@ h6 { font-size: 1rem; }
     background-color: white;
 }
 
+.selection-formulaire:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
 .etiquette-formulaire {
     display: block;
     margin-bottom: 0.5rem;
@@ -268,7 +283,8 @@ h6 { font-size: 1rem; }
 }
 
 .tableau-survol tbody tr:hover {
-    background-color: #e9ecef;
+    background-color: #e3f2fd;
+    transition: background-color 0.2s ease;
 }
 
 .entete-tableau-sombre th {
@@ -308,6 +324,17 @@ h6 { font-size: 1rem; }
     color: #0c5460;
 }
 
+.lien-alerte {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.lien-alerte:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
 /* ===== BADGES ===== */
 .badge {
     display: inline-block;
@@ -326,6 +353,28 @@ h6 { font-size: 1rem; }
 .fond-avertissement { background-color: #f39c12; color: white; }
 .fond-info { background-color: #17a2b8; color: white; }
 .fond-secondaire { background-color: #6c757d; color: white; }
+
+.badge-compteur {
+    font-size: 0.9em;
+    margin-left: 10px;
+    padding: 3px 8px;
+}
+
+.badge-sans-resultat {
+    background-color: #e74c3c;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+.badge-a-venir {
+    background-color: #f39c12;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
 
 /* ===== UTILITAIRES ===== */
 .centrer-texte { text-align: center; }
@@ -357,6 +406,330 @@ h6 { font-size: 1rem; }
     padding: 0.5rem;
 }
 
+.texte-mute {
+    color: #6c757d;
+}
+
+.texte-blanc {
+    color: white;
+}
+
+/* ===== FEUILLE DE MATCH - SPÉCIFIQUE ===== */
+
+/* Section d'informations du match */
+.info-match-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-match-item {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #3498db;
+}
+
+.info-match-item h6 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+}
+
+.info-match-item p {
+    margin: 0;
+    color: #495057;
+}
+
+/* En-tête de section */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.titre-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.titre-section small {
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+/* Zone de lecture seule */
+.zone-lecture-seule {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    min-height: 46px;
+}
+
+.selection-formulaire[disabled],
+.champ-formulaire[disabled] {
+    background-color: #e9ecef !important;
+    opacity: 0.7 !important;
+    cursor: not-allowed !important;
+    border-color: #ced4da !important;
+}
+
+/* Informations joueur */
+.joueur-info-basique {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.info-joueur-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    border-left: 3px solid #27ae60;
+    font-size: 0.9em;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Badges de statistiques */
+.stat-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.stat-nb-matchs {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+/* Affichage des postes */
+.poste-display {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.poste-display span {
+    color: #7f8c8d;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+/* Historique des matchs */
+.historique-matchs {
+    max-height: 120px;
+    overflow-y: auto;
+    margin-top: 5px;
+    padding: 5px;
+    background: #fff;
+    border-radius: 3px;
+    font-size: 0.8em;
+    border: 1px solid #dee2e6;
+}
+
+.match-historique {
+    padding: 3px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.match-historique:last-child {
+    border-bottom: none;
+}
+
+.match-date {
+    color: #6c757d;
+    font-size: 0.85em;
+}
+
+.match-info {
+    margin-left: 10px;
+}
+
+/* Commentaires */
+.commentaire-court {
+    display: inline;
+}
+
+.voir-plus {
+    color: #3498db;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 5px;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.voir-plus:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Messages de validation */
+.validation-message {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.validation-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.validation-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Compteurs */
+.compteur-titulaires {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.compteur-ok {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.compteur-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.compteur-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ===== NOTATION DES JOUEURS ===== */
+.note-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.note-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.note-btn:hover {
+    transform: scale(1.1);
+}
+
+.note-btn.selected {
+    border-color: #007bff;
+    background-color: #e7f3ff;
+    color: #007bff;
+}
+
+.note-btn.note-1 { border-color: #dc3545; }
+.note-btn.note-2 { border-color: #fd7e14; }
+.note-btn.note-3 { border-color: #ffc107; }
+.note-btn.note-4 { border-color: #28a745; }
+.note-btn.note-5 { border-color: #20c997; }
+
+.note-btn.note-1.selected { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border-color: #dc3545;
+}
+
+.note-btn.note-2.selected { 
+    background-color: #fff3cd; 
+    color: #856404; 
+    border-color: #fd7e14;
+}
+
+.note-btn.note-3.selected { 
+    background-color: #fff3cd; 
+    color: #856404; 
+    border-color: #ffc107;
+}
+
+.note-btn.note-4.selected { 
+    background-color: #d4edda; 
+    color: #155724; 
+    border-color: #28a745;
+}
+
+.note-btn.note-5.selected { 
+    background-color: #d1ecf1; 
+    color: #0c5460; 
+    border-color: #20c997;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex !important;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== EFFETS VISUELS ===== */
+.carte:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.bouton:active {
+    transform: translateY(0);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .conteneur {
@@ -385,6 +758,33 @@ h6 { font-size: 1rem; }
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
     h3 { font-size: 1.5rem; }
+    
+    /* Responsive pour feuille de match */
+    .info-match-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .historique-matchs {
+        max-height: 100px;
+    }
+    
+    .note-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .note-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
 }
 
 /* ===== FOOTER ===== */
@@ -394,39 +794,254 @@ h6 { font-size: 1rem; }
     padding: 2rem 0;
     margin-top: 3rem;
 }
-
-.texte-mute {
-    color: #6c757d;
+/* ===== TABLEAU DE BORD ===== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 0 15px;
 }
 
-.texte-blanc {
+.dashboard-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h3 {
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+}
+
+.dashboard-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.dashboard-card a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #3498db;
     color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
-.zone-lecture-seule {
-    padding: 0.75rem;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    background-color: #f8f9fa;
-    min-height: 46px;
+.dashboard-card a:hover {
+    background-color: #2980b9;
+    color: white;
+    text-decoration: none;
+}
+
+.card-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #e3f2fd;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+    color: #3498db;
+    font-size: 1.8rem;
 }
 
-.selection-formulaire[disabled],
-.champ-formulaire[disabled] {
-    background-color: #e9ecef !important;
-    opacity: 0.7 !important;
-    cursor: not-allowed !important;
-    border-color: #ced4da !important;
-}
 
-.titre-section small {
-    font-size: 0.85em;
-    opacity: 0.9;
-}
-
-.entete-carte .texte-blanc {
+/* Section d'accueil */
+.welcome-section {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
     color: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin: 2rem 15px;
+    text-align: center;
+}
+
+.welcome-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
     opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header spécifique du dashboard */
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 0;
+}
+
+.header-content {
+    padding: 1rem 2rem;
+}
+
+.header-content:first-child {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+nav.header-content {
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 2rem;
+}
+
+nav.header-content a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav.header-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logout-btn {
+    padding: 0.5rem 1rem;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+/* Responsive pour le dashboard */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .dashboard-card {
+        padding: 1.5rem;
+    }
+    
+    .welcome-section {
+        padding: 2rem 1rem;
+        margin: 1rem 10px;
+    }
+    
+    .welcome-section h2 {
+        font-size: 2rem;
+    }
+    
+    nav.header-content {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .header-content {
+        padding: 0.75rem 1rem;
+    }
+}
+.info-joueur-details {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 5px;
+    padding: 10px;
+    border-left: 3px solid #27ae60;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    display: none;
+}
+.historique-matchs {
+    max-height: 120px;
+    overflow-y: auto;
+    margin-top: 5px;
+    padding: 5px;
+    background: #fff;
+    border-radius: 3px;
+    font-size: 0.8em;
+    border: 1px solid #dee2e6;
+}
+.match-historique {
+    padding: 3px 0;
+    border-bottom: 1px solid #eee;
+}
+.match-historique:last-child {
+    border-bottom: none;
+}
+.match-date {
+    color: #6c757d;
+    font-size: 0.85em;
+}
+.match-info {
+    margin-left: 10px;
+}
+.commentaire-court {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.voir-plus {
+    color: #3498db;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 5px;
+    text-decoration: underline;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
 }

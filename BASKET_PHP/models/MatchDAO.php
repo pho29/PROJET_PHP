@@ -192,33 +192,47 @@ class MatchDAO {
         }
     }
 
-    public function getStatistiques() {
+    public function getStatsMatchs() {
         try {
             $query = "SELECT 
-                        COUNT(*) as total_matchs,
-                        SUM(CASE WHEN resultat = 'Victoire' THEN 1 ELSE 0 END) as victoires,
-                        SUM(CASE WHEN resultat = 'Défaite' THEN 1 ELSE 0 END) as defaites,
-                        SUM(CASE WHEN resultat = 'Nul' THEN 1 ELSE 0 END) as nuls
-                     FROM " . $this->table_name . " 
-                     WHERE resultat != 'À venir'";
+                    COUNT(*) AS total_matchs,
+                    SUM(CASE WHEN resultat = 'Victoire' THEN 1 ELSE 0 END) AS matchs_gagnes,
+                    SUM(CASE WHEN resultat = 'Défaite' THEN 1 ELSE 0 END) AS matchs_perdus,
+                    SUM(CASE WHEN resultat = 'Nul' THEN 1 ELSE 0 END) AS matchs_nuls
+                  FROM " . $this->table_name . "
+                  WHERE resultat != 'À venir'";
+
             $stmt = $this->db->prepare($query);
             $stmt->execute();
-            
-            $result = $stmt->fetch();
-            return $result ?: [
-                'total_matchs' => 0,
-                'victoires' => 0,
-                'defaites' => 0,
-                'nuls' => 0
-            ];
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+
         } catch (PDOException $e) {
-            error_log("Erreur DAO getStatistiques: " . $e->getMessage());
+            error_log("Erreur DAO getStatsMatchs: " . $e->getMessage());
             return [
                 'total_matchs' => 0,
-                'victoires' => 0,
-                'defaites' => 0,
-                'nuls' => 0
+                'matchs_gagnes' => 0,
+                'matchs_perdus' => 0,
+                'matchs_nuls' => 0
             ];
         }
     }
+    public function updateParticipantEvaluation($match_id, $joueur_id, $evaluation) {
+    try {
+        $query = "UPDATE Participer 
+                 SET evaluation = :evaluation 
+                 WHERE id_match = :match_id AND id_joueur = :joueur_id";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(":evaluation", $evaluation, PDO::PARAM_INT);
+        $stmt->bindValue(":match_id", $match_id, PDO::PARAM_INT);
+        $stmt->bindValue(":joueur_id", $joueur_id, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        error_log("Erreur DAO updateParticipantEvaluation: " . $e->getMessage());
+        return false;
+    }
+}
+
 }
